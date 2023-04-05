@@ -15,6 +15,7 @@ public class Basket {
     }
 
     public Basket() {
+        this.rows = new HashMap<>();
     }
 
     public int addRow(Row row){

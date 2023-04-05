@@ -22,6 +22,10 @@ public class DatabaseManager {
         this.databases = new HashMap<>();
     }
 
+    public Database getDatabase(String dbName){
+        return databases.get(dbName);
+    }
+
     public void addDatabase(Database database){
         this.databases.put(database.getDbName(),database);
     }
