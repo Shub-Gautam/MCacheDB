@@ -18,6 +18,10 @@ public class DatabaseManager {
         this.databases = databases;
     }
 
+    public DatabaseManager() {
+        this.databases = new HashMap<>();
+    }
+
     public void addDatabase(Database database){
         this.databases.put(database.getDbName(),database);
     }
