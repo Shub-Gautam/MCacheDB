@@ -34,7 +34,6 @@ public class DB {
         return ResponseEntity.ok("Successfull");
     }
 
-
     @GetMapping("bask/{db}")
     public ResponseEntity<HashMap<String,Basket>> getBaskets(@PathVariable String db){
         Database tempDatabase = databaseManager.getDatabase(db);
@@ -56,9 +55,17 @@ public class DB {
         Database tempDatabase = databaseManager.getDatabase(db);
         Basket basket = tempDatabase.getBasket(basket_name);
         Row row = new Row((System.currentTimeMillis() * 1000000L) + "",new HashMap<String,String>(),new Date(),new Date());
-        row.getKeyValuesMap();
+//        row.getKeyValuesMap();
         basket.addRow(row);
         return ResponseEntity.ok("1 Row added to the basket");
+    }
+
+    @GetMapping("/db/{db}/bask/{basket_name}/{key}")
+    public ResponseEntity<Row> getRow(@PathVariable String basket_name, @PathVariable String db, @PathVariable String key){
+        Database tempDatabase = databaseManager.getDatabase(db);
+        Basket basket = tempDatabase.getBasket(basket_name);
+        Row row = basket.getRows().get(key);
+        return ResponseEntity.ok(row);
     }
 
 

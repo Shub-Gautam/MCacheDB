@@ -18,9 +18,8 @@ public class Basket {
         this.rows = new HashMap<>();
     }
 
-    public int addRow(Row row){
+    public void addRow(Row row){
         rows.put(row.getRowId(), row);
-        return 1;
     }
 
     public void setBasketName(String basketName) {
