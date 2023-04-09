@@ -4,11 +4,9 @@ import com.mcachedb.datapackets.Basket;
 import com.mcachedb.datapackets.Database;
 import com.mcachedb.datapackets.Row;
 import com.mcachedb.manage.DatabaseManager;
+import com.mcachedb.response.db.AddRow;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -48,14 +46,13 @@ public class DB {
         return ResponseEntity.ok("Basket Created Successfully");
     }
 
-
 //    Under Processing
-    @PostMapping("/db/{db}/bask/{basket_name}")
-    public ResponseEntity<String> addRow(@PathVariable String basket_name, @PathVariable String db){
+    @PostMapping("/db/{db}/bask/{basket_name}/add")
+    public ResponseEntity<String> addRow(@PathVariable String basket_name, @PathVariable String db, @RequestBody AddRow data){
         Database tempDatabase = databaseManager.getDatabase(db);
         Basket basket = tempDatabase.getBasket(basket_name);
         Row row = new Row((System.currentTimeMillis() * 1000000L) + "",new HashMap<String,String>(),new Date(),new Date());
-//        row.getKeyValuesMap();
+        row.getKeyValuesMap().put(data.getKey(),data.getValue());
         basket.addRow(row);
         return ResponseEntity.ok("1 Row added to the basket");
     }
@@ -68,6 +65,14 @@ public class DB {
         return ResponseEntity.ok(row);
     }
 
-
-
+    @GetMapping("/db/{db}/bask/{basket_name}/all")
+    public ResponseEntity<List<Row>> getAllRowsInBasket(@PathVariable String basket_name, @PathVariable String db){
+        Database tempDatabase = databaseManager.getDatabase(db);
+        Basket basket = tempDatabase.getBasket(basket_name);
+        List<Row> list = new ArrayList<>();
+        basket.getRows().forEach((key,value)->{
+            list.add(value);
+        });
+        return ResponseEntity.ok(list);
+    }
 }
