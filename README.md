@@ -1,11 +1,12 @@
 ## MCacheDB 
 MCache is an in-memory database written completely in java (JDK20) 
--- version 0.0.6
+-- version 0.07.0
 
 Technology used:
 Spring 
 SpringBoot 3
 Tomcat
+JavaFx
 
 Software Binaries are available to download in release section of the page 
 Documentation comming soon
