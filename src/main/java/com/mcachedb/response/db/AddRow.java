@@ -21,6 +21,14 @@ public class AddRow {
         return value;
     }
 
+    @Override
+    public String toString() {
+        return "AddRow{" +
+                "key='" + key + '\'' +
+                ", value='" + value + '\'' +
+                '}';
+    }
+
     public void setValue(String value) {
         this.value = value;
     }

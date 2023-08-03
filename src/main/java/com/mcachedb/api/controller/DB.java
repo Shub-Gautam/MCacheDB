@@ -55,6 +55,7 @@ public class DB {
 //    Under Processing
     @PostMapping("/db/{db}/bask/{basket_name}/add")
     public ResponseEntity<String> addRow(@PathVariable String basket_name, @PathVariable String db, @RequestBody AddRow data){
+        System.out.println(data.toString());
         Database tempDatabase = databaseManager.getDatabase(db);
         Basket basket = tempDatabase.getBasket(basket_name);
         Row row = new Row((System.currentTimeMillis() * 1000000L) + "",new HashMap<String,String>(),new Date(),new Date());
