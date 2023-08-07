@@ -2,6 +2,7 @@ package com.mcachedb.manage;
 
 import com.mcachedb.datapackets.Database;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
@@ -11,7 +12,7 @@ import java.util.HashMap;
 **/
 
 // Under Development -- Shubham Gautam
-public class DatabaseManager {
+public class DatabaseManager implements Serializable {
     HashMap<String, Database> databases ;
 
     public DatabaseManager(HashMap<String, Database> databases) {

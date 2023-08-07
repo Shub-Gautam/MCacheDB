@@ -1,10 +1,11 @@
 package com.mcachedb.datapackets;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class Database {
+public class Database implements Serializable {
     private String dbName ;
     private HashMap<String,Basket> baskets ;
     private Date createdAt ;

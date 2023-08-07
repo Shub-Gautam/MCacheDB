@@ -1,9 +1,10 @@
 package com.mcachedb.datapackets;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Row {
+public class Row implements Serializable {
     private String rowId;
     private HashMap<String, String> keyValuesMap;
     private Date createdAt;

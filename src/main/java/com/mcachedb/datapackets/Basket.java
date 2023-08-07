@@ -1,9 +1,10 @@
 package com.mcachedb.datapackets;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Basket {
+public class Basket implements Serializable {
     private String basketName;
     private HashMap<String, Row> rows ;
     private Date createdAt;

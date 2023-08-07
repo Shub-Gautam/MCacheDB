@@ -1,5 +1,6 @@
 package com.mcachedb.api.controller;
 
+import com.mcachedb.backup.DatabaseSD;
 import com.mcachedb.datapackets.Basket;
 import com.mcachedb.datapackets.Database;
 import com.mcachedb.datapackets.Row;
@@ -13,6 +14,19 @@ import java.util.*;
 @RestController(value = "local")
 public class DB {
     DatabaseManager databaseManager = new DatabaseManager();
+    DatabaseSD databaseSD = new DatabaseSD() ;
+
+    @GetMapping("/backup/db")
+    public ResponseEntity<String> backupDB(){
+        databaseSD.serializerDB("backup.txt",databaseManager);
+        return ResponseEntity.ok("");
+    }
+
+    @GetMapping("/restore/db")
+    public ResponseEntity<String> restoreDB(){
+        databaseManager = databaseSD.deserializerDB("backup.txt");
+        return ResponseEntity.ok("Done");
+    }
 
     @GetMapping("/dbs")
     public ResponseEntity<List<String>> getDB(){
